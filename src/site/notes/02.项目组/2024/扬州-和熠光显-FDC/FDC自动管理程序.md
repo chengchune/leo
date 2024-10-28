@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/02/2024/fdc/fdc/"}
+{"dg-publish":true,"permalink":"/02.项目组/2024/扬州-和熠光显-FDC/FDC自动管理程序/"}
 ---
 
 
