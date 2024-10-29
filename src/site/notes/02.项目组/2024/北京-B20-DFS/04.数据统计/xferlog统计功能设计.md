@@ -34,7 +34,7 @@ sudo logrotate -f /etc/logrotate.d/vsftpd
 ##### 步骤 4. 设置 `crontab` 定时任务
 `sudo crontab -e`
 在其中添加以下行，每天凌晨 0:00 自动执行日志轮转：
-`10 0 * * * /usr/sbin/logrotate /etc/logrotate.d/vsftpd`
+`58 23 * * * /usr/sbin/logrotate /etc/logrotate.d/vsftpd`
 
 ### 2 xferlog 解析并写入Oracle表
 ##### 2.1 xferlog 表结构
@@ -181,7 +181,7 @@ EOF
     done < "$logfile"  # 将日志文件传递给 while 循环的标准输入
 
     # 将解析完成的日志文件移动到 OK 文件夹
-#    mv "$logfile" "$OK_DIR/"
+    mv "$logfile" "$OK_DIR/"
     echo "已将处理完成的日志文件移动到: $OK_DIR/"
 done
 ```
@@ -213,7 +213,7 @@ CREATE SEQUENCE SEQ_DFS_FTP_DELETE_LOG START WITH 1 -- 序列从1开始
  CREATE INDEX idx_username ON dfs_ftp_delete_log(username);
 ```
 ##### 3.2 日志解析程序
-> parse_xferlog_to_oracle.sh
+> parse_vsftpd_to_oracle.sh
 ```Shell
 #!/bin/bash
 
@@ -293,7 +293,7 @@ EOF
     done
 
     # 将解析完成的日志文件移动到 OK 文件夹
-    #mv "$log_file" "$OK_DIR/"
+    mv "$log_file" "$OK_DIR/"
     echo "已将处理完成的日志文件移动到：$OK_DIR"
 done
 ```
